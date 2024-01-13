@@ -3,4 +3,12 @@ type Mutation {
     createPost(input: CreatePostInput!): Post
     updatePost(id: ID!,input: UpdatePostInput!): Post
     deletePost(id: ID!): ID
+
+    createMeta(input: CreateMetaInput!): Boolean
+    deleteMeta(key: String!): String
+    flushMeta:String
+}
+
+extend type Query {
+    getMeta(key:String!):String
 }

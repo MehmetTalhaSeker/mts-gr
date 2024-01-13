@@ -24,34 +24,6 @@ func (c *MetaCreate) SetInput(i CreateMetaInput) *MetaCreate {
 	return c
 }
 
-// UpdateMetaInput represents a mutation input for updating metaslice.
-type UpdateMetaInput struct {
-	Key   *string
-	Value *string
-}
-
-// Mutate applies the UpdateMetaInput on the MetaMutation builder.
-func (i *UpdateMetaInput) Mutate(m *MetaMutation) {
-	if v := i.Key; v != nil {
-		m.SetKey(*v)
-	}
-	if v := i.Value; v != nil {
-		m.SetValue(*v)
-	}
-}
-
-// SetInput applies the change-set in the UpdateMetaInput on the MetaUpdate builder.
-func (c *MetaUpdate) SetInput(i UpdateMetaInput) *MetaUpdate {
-	i.Mutate(c.Mutation())
-	return c
-}
-
-// SetInput applies the change-set in the UpdateMetaInput on the MetaUpdateOne builder.
-func (c *MetaUpdateOne) SetInput(i UpdateMetaInput) *MetaUpdateOne {
-	i.Mutate(c.Mutation())
-	return c
-}
-
 // CreatePostInput represents a mutation input for creating posts.
 type CreatePostInput struct {
 	CreatedAt  *time.Time

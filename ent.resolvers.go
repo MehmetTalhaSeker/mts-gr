@@ -21,11 +21,6 @@ func (r *queryResolver) Nodes(ctx context.Context, ids []int) ([]ent.Noder, erro
 	panic(fmt.Errorf("not implemented: Nodes - nodes"))
 }
 
-// MetaSlice is the resolver for the metaSlice field.
-func (r *queryResolver) MetaSlice(ctx context.Context) ([]*ent.Meta, error) {
-	panic(fmt.Errorf("not implemented: MetaSlice - metaSlice"))
-}
-
 // Posts is the resolver for the posts field.
 func (r *queryResolver) Posts(ctx context.Context) ([]*ent.Post, error) {
 	return r.client.Post.Query().All(ctx)

@@ -19,7 +19,7 @@ func NewMetaDBMS(client *ent.Client) *MetaDBMS {
 func (db *MetaDBMS) Get(key string) interface{} {
 	item, err := db.client.Meta.Query().Where(meta.Key(key)).Only(context.Background())
 	if err != nil {
-		return err
+		return nil
 	}
 	return item.Value
 }

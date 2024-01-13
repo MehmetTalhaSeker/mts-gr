@@ -6,6 +6,7 @@ package mts_gr
 
 import (
 	"context"
+	"errors"
 
 	"github.com/MehmetTalhaSeker/mts-gr/ent"
 )
@@ -26,6 +27,40 @@ func (r *mutationResolver) DeletePost(ctx context.Context, id int) (*int, error)
 		return nil, err
 	}
 	return &id, nil
+}
+
+// CreateMeta is the resolver for the createMeta field.
+func (r *mutationResolver) CreateMeta(ctx context.Context, input ent.CreateMetaInput) (*bool, error) {
+	b, err := r.mt.Put(input.Key, input.Value)
+	if err != nil {
+		return nil, err
+	}
+
+	return &b, nil
+}
+
+// DeleteMeta is the resolver for the deleteMeta field.
+func (r *mutationResolver) DeleteMeta(ctx context.Context, key string) (*string, error) {
+	r.mt.Del(key)
+	return nil, nil
+}
+
+// FlushMeta is the resolver for the flushMeta field.
+func (r *mutationResolver) FlushMeta(ctx context.Context) (*string, error) {
+	r.mt.Flush()
+	return nil, nil
+}
+
+// GetMeta is the resolver for the getMeta field.
+func (r *queryResolver) GetMeta(ctx context.Context, key string) (*string, error) {
+	get := r.mt.Get(key)
+	val, ok := get.(string)
+
+	if ok {
+		return &val, nil
+	}
+
+	return nil, errors.New("record not found")
 }
 
 // Mutation returns MutationResolver implementation.

@@ -16,6 +16,7 @@ resolver:
 autobind:
   - github.com/MehmetTalhaSeker/mts-gr/ent
   - github.com/MehmetTalhaSeker/mts-gr/ent/post
+  - github.com/MehmetTalhaSeker/mts-gr/ent/meta
 
 # This section declares type mapping between the GraphQL and Go type systems.
 models:
